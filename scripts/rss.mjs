@@ -35,13 +35,13 @@ async function generateRSS() {
   try {
     // For now, generate an empty RSS feed since we don't have blog posts
     const rss = generateRss(siteMetadata, [])
-    
+
     // Ensure public directory exists
     mkdirSync('./public', { recursive: true })
-    
+
     // Write RSS feed
     writeFileSync('./public/feed.xml', rss)
-    
+
     console.log('RSS feed generated successfully')
   } catch (error) {
     console.log('RSS feed generation skipped:', error.message)
@@ -49,4 +49,3 @@ async function generateRSS() {
 }
 
 export default generateRSS
-
