@@ -113,11 +113,11 @@ export default function Page() {
                     }}
                   >
                     <Image
-                      src="/static/images/Avatar.png"
+                      src="/static/images/avatar2.jpg"
                       alt="Youssef Bastawisy"
                       width={240}
                       height={320}
-                      className="relative"
+                      className="relative rounded-lg"
                       style={{
                         filter: 'drop-shadow(0 0 30px rgba(236, 72, 153, 0.2))',
                       }}

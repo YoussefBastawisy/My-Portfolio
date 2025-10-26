@@ -46,11 +46,11 @@ export default function Home() {
                 }}
               >
                 <Image
-                  src="/static/images/Avatar.png"
+                  src="/static/images/avatar2.jpg"
                   alt={siteMetadata.author}
                   width={300}
                   height={400}
-                  className="relative"
+                  className="relative rounded-lg"
                   style={{
                     filter: 'drop-shadow(0 0 40px rgba(236, 72, 153, 0.2))',
                   }}
