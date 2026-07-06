@@ -1,6 +1,7 @@
 interface Project {
   title: string
   description: string
+  period?: string
   href?: string
   imgSrc?: string
   tags?: string[]
@@ -9,60 +10,77 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'Mind Care - AI-Powered Alzheimer\'s Support System',
-    description: `A comprehensive multi-platform system combining AI, VR, and Mobile Health to support Alzheimer's patients and caregivers. Features an AI-powered Avatar for cognitive assessment using NLP and Speech Recognition with 94% accuracy. Includes VR-based cognitive training with adaptive difficulty and a Flutter mobile app with real-time location tracking integrated with Firebase and Google Maps API.`,
-    imgSrc: '/static/images/projects/mind-care.jpg',
-    href: 'https://github.com/YoussefBastawisy',
-    tags: ['NLP', 'VR', 'Flutter', 'Firebase', 'Google Maps API', 'TensorFlow', 'Speech Recognition'],
+    title: 'Laam — Arabic RAG Assistant',
+    period: 'May 2026 · Restart Technology',
+    description:
+      "An end-to-end Arabic RAG assistant grounded in the platform's knowledge base. Engineered the full retrieval pipeline — semantic chunking, embeddings, cross-encoder reranking, and deduplication — and self-hosted the entire serving stack in production.",
+    tags: ['RAG', 'vLLM', 'Qdrant', 'TEI Embeddings', 'FastAPI', 'Tesseract OCR', 'GCP'],
     achievements: [
-      '🏆 1st Place - Faculty of Computer Science & AI Graduation Project',
-      '🎯 94% accuracy in MMSE response interpretation',
-      '📈 35% boost in cognitive engagement scores',
-      '👥 Supported 100+ patients during pilot trials',
-      '⚡ 40% reduction in emergency response times'
-    ]
+      'Reached hit@8 of 0.96 on the evaluation set',
+      'Self-hosted vLLM + TEI + Qdrant on an NVIDIA Tesla T4 (GCP), streaming Arabic over SSE',
+      'OCR ingestion: 47 Ministry-of-Education PDFs → 2,800 indexed chunks',
+      'JWT-secured function calling, daily vector-store backups, HubSpot human-handoff',
+    ],
   },
   {
-    title: 'Sentiment Analysis on TechCrunch News Articles',
-    description: `Advanced NLP project analyzing sentiment in 1,000+ technology news articles from TechCrunch. Implemented web scraping with BeautifulSoup and NewsAPI, applied comprehensive text preprocessing with NLTK, and performed feature extraction using TF-IDF. Utilized KMeans clustering with PCA dimensionality reduction for thematic grouping and developed a high-accuracy sentiment classification model.`,
-    imgSrc: '/static/images/projects/sentiment-analysis.jpg',
-    href: 'https://github.com/YoussefBastawisy',
-    tags: ['NLP', 'Python', 'BeautifulSoup', 'NLTK', 'TF-IDF', 'KMeans', 'PCA', 'Machine Learning'],
+    title: 'Super Agent',
+    period: 'Mar 2026 · Cycls',
+    description:
+      'A general-purpose agentic loop with isolated code execution, file creation/editing, and web search — spanning research, business, and reasoning tasks. RAG and deep-search components let the agent plan, retrieve, and act autonomously across multi-step objectives.',
+    tags: ['Cycls SDK', 'Agentic Orchestration', 'Code Execution', 'Web Search', 'RAG'],
     achievements: [
-      '🎯 96% model accuracy in sentiment classification',
-      '📊 Analyzed 1,000+ articles from TechCrunch',
-      '🔍 Applied advanced text preprocessing techniques',
-      '📈 Effective thematic clustering with PCA',
-      '💡 Generated WordClouds and visualizations'
-    ]
+      'Autonomous multi-step planning and execution',
+      'Isolated code execution with file creation and editing',
+      'RAG + deep search integrated into the orchestrator',
+    ],
   },
   {
-    title: 'RAG-Based AI Agents',
-    description: `Production-ready AI agent system leveraging Large Language Models with Retrieval Augmented Generation to ground outputs in factual data. Implemented function calling and tool-use protocols for real-time programmatic actions and external data integration. Designed scalable infrastructure supporting multiple AI agents in production environments with reduced hallucination rates.`,
-    imgSrc: '/static/images/projects/rag-agents.jpg',
-    href: 'https://github.com/YoussefBastawisy',
-    tags: ['LLMs', 'RAG', 'Python', 'LangChain', 'Vector Databases', 'API Integration', 'MLOps'],
+    title: 'Bid Evaluation Expert',
+    period: 'Jan 2026 · Cycls',
+    description:
+      'A structured-output, function-calling agent that evaluates technical and financial bids using a weighted scoring formula validated to sum to 100%, producing a documented evaluation per approved standards.',
+    tags: ['Cycls SDK', 'Claude Sonnet', 'Function Calling', 'Structured Output', 'openpyxl'],
     achievements: [
-      '🤖 Sophisticated AI agents with RAG implementation',
-      '⚡ Real-time function calling and tool use',
-      '🎯 Reduced model hallucination significantly',
-      '🏗️ Scalable production infrastructure',
-      '🔧 External data source integration'
-    ]
+      'Weighted scoring formula validated to sum to 100%',
+      'Typed tool emitting ready-to-fill, multi-sheet Excel workbooks',
+      'Covers the five official local-content mechanisms',
+    ],
   },
   {
-    title: 'Predictive Models for Fintech & Insurance',
-    description: `Machine learning models for insurance and fintech solutions during internship at ZA Tech. Designed and evaluated predictive models using supervised and unsupervised learning techniques. Preprocessed real-world datasets and fine-tuned model performance using cross-validation and hyperparameter optimization. Deployed models in scalable cloud environments.`,
-    imgSrc: '/static/images/projects/fintech-ml.jpg',
-    href: 'https://github.com/YoussefBastawisy',
-    tags: ['Machine Learning', 'Python', 'Scikit-learn', 'Cloud', 'Cross-validation', 'Hyperparameter Tuning'],
+    title: 'TasiBot — Saudi Market Analyst',
+    period: 'Dec 2025 · Cycls',
+    description:
+      'An agentic stock analyst covering 400+ TASI-listed stocks with live quotes, technical signals, scoring, gainers/losers, dividends, social sentiment, watchlists, and breaking disclosures.',
+    tags: ['Cycls SDK', 'Claude Skills', 'Live Data', 'QuickChart'],
     achievements: [
-      '💼 Production ML models for fintech domain',
-      '🔄 Cross-validation and optimization',
-      '☁️ Cloud-based deployment',
-      '📊 Real-world dataset preprocessing',
-      '🤝 Collaborated with product teams'
-    ]
+      'Coverage of 400+ TASI-listed stocks with live data',
+      'Interactive bar / line / pie / doughnut charts via QuickChart',
+      'Skills-based market-data layer with a clarifying-question tool',
+    ],
+  },
+  {
+    title: 'Haseef — Saudi Legal Assistant',
+    period: 'Oct 2025 · Cycls',
+    description:
+      'A specialized legal assistant that retrieves over a structured Postgres legal database (laws + court cases) through a guarded, read-only SQL tool — with always-ranked full-text search and Hijri/Gregorian date handling.',
+    tags: ['Cycls SDK', 'Text-to-SQL RAG', 'Postgres FTS', 'Tool Use'],
+    achievements: [
+      'Guarded read-only SQL (SELECT/WITH only, row caps, statement timeouts)',
+      'Always-ranked full-text search with payload capping and file-spill',
+      'Hijri/Gregorian date handling and per-workspace template sync',
+    ],
+  },
+  {
+    title: 'Local Content Expert',
+    period: 'Aug 2025 · Cycls',
+    description:
+      'An Arabic-first agent answering local-content regulatory questions via index-first RAG over a curated source index — consulting the index before exploratory search to keep retrieval grounded and accurate.',
+    tags: ['Cycls SDK', 'Source-Index RAG', 'Structured UI Tools', 'Sandbox Tools'],
+    achievements: [
+      'Index-first RAG over a curated source index',
+      'Per-turn conversation-history sanitization for stable retrieval',
+      'Rich table / step / callout rendering via JSON-Schema UI tools',
+    ],
   },
 ]
 

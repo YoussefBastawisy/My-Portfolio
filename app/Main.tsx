@@ -1,390 +1,248 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Link from '@/components/Link'
 import Image from '@/components/Image'
+import SocialIcon from '@/components/social-icons'
 import TypingAnimation from '@/components/TypingAnimation'
 import Services from '@/components/Services'
 import TechStack from '@/components/TechStack'
-import Testimonials from '@/components/Testimonials'
 import Achievements from '@/components/Achievements'
 import FAQ from '@/components/FAQ'
+import Card from '@/components/Card'
+import SectionHeading from '@/components/SectionHeading'
+import projectsData from '@/data/projectsData'
 import siteMetadata from '@/data/siteMetadata'
-import { motion } from 'framer-motion'
+
+const stats = [
+  { value: '6+', label: 'AI systems shipped' },
+  { value: '3+', label: 'Years in AI / ML' },
+  { value: '5+', label: 'Industry domains' },
+]
+
+const companies = ['Cycls', 'Restart Technology', 'Kayfa Academy', 'Arabian Academy']
 
 export default function Home() {
+  const featuredProjects = projectsData.slice(0, 2)
+
   return (
     <>
-      {/* Hero Section */}
-      <div className="space-y-8 pt-10 pb-16 md:pt-16 md:pb-20">
-        <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-12">
-          {/* Avatar */}
-          <motion.div
-            className="perspective-1000 relative flex-shrink-0"
-            initial={{ scale: 0, rotateY: -180 }}
-            animate={{ scale: 1, rotateY: 0 }}
-            transition={{
-              type: 'spring',
-              stiffness: 260,
-              damping: 20,
-              duration: 1,
-            }}
-          >
-            <div className="relative" style={{ transformStyle: 'preserve-3d' }}>
-              {/* Avatar Image - 3D with shadows */}
-              <motion.div
-                className="relative z-10"
-                whileHover={{
-                  scale: 1.05,
-                  rotateY: 5,
-                  rotateX: 5,
-                  transition: { duration: 0.3 },
-                }}
-                style={{
-                  transformStyle: 'preserve-3d',
-                  filter:
-                    'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.5)) drop-shadow(0 10px 30px rgba(236, 72, 153, 0.3))',
-                }}
-              >
-                <Image
-                  src="/static/images/avatar2.jpg"
-                  alt={siteMetadata.author}
-                  width={300}
-                  height={400}
-                  className="relative rounded-lg"
-                  style={{
-                    filter: 'drop-shadow(0 0 40px rgba(236, 72, 153, 0.2))',
-                  }}
-                />
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Text Content */}
-          <div className="flex-1 space-y-6 md:space-y-8">
-            <motion.h1
-              className="text-5xl leading-tight font-extrabold tracking-tight text-gray-900 sm:text-6xl md:text-7xl dark:text-gray-100"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Hey, I'm {siteMetadata.author.split(' ')[0]} 👋
-            </motion.h1>
-            <motion.h2
-              className="text-3xl leading-9 font-bold tracking-tight sm:text-4xl md:text-5xl"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <span className="from-primary-500 bg-gradient-to-r via-pink-500 to-purple-600 bg-clip-text text-transparent">
-                <TypingAnimation
-                  texts={[
-                    'I build intelligent AI solutions.',
-                    'I create ML models that drive results.',
-                    'I transform data into insights.',
-                    'I deploy production-ready systems.',
-                  ]}
-                />
-              </span>
-            </motion.h2>
-            <motion.p
-              className="max-w-3xl text-xl leading-8 text-gray-600 dark:text-gray-400"
-              initial={{ opacity: 0, y: 20 }}
+      {/* Hero */}
+      <section className="relative">
+        <div className="bg-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px]" />
+        <div className="grid grid-cols-1 items-center gap-12 pt-14 pb-16 md:grid-cols-[1.4fr_1fr] md:pt-20 md:pb-24">
+          <div className="space-y-7">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/60 px-3 py-1 text-sm text-gray-600 backdrop-blur dark:border-gray-800 dark:bg-gray-900/60 dark:text-gray-400"
             >
-              I'm an Applied AI Engineer passionate about creating innovative machine learning
-              solutions. With expertise in LLMs, RAG, NLP, and Deep Learning, I transform complex
-              data into actionable insights.
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+              </span>
+              Available for select AI projects
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl dark:text-gray-100"
+            >
+              Hi, I&apos;m {siteMetadata.author.split(' ')[0]}.
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-2xl font-semibold tracking-tight text-gray-500 sm:text-3xl dark:text-gray-400"
+            >
+              <TypingAnimation
+                texts={[
+                  'I build production agentic AI systems.',
+                  'I ship RAG and multi-agent apps.',
+                  'I take LLM agents from prototype to production.',
+                ]}
+                className="text-primary-600 dark:text-primary-400"
+              />
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="max-w-xl text-lg leading-relaxed text-gray-600 dark:text-gray-400"
+            >
+              AI Engineer specializing in production-ready agentic AI systems — multi-agent
+              orchestration, RAG, structured outputs, and tool-use. I build autonomous, tool-aware
+              agents end-to-end and ship them as reliable, observable LLM products.
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
-              className="flex flex-wrap gap-4 pt-4"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="flex flex-wrap items-center gap-3"
             >
               <Link
-                href="/contact"
-                className="group from-primary-500 relative transform overflow-hidden rounded-lg bg-gradient-to-r via-pink-500 to-purple-600 px-8 py-3 text-base font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  🚀 Let's Start Your Project
-                </span>
-                <div className="to-primary-500 absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-              </Link>
-              <Link
-                href="/about"
-                className="group border-primary-500 text-primary-500 relative transform overflow-hidden rounded-lg border-2 px-8 py-3 text-base font-medium transition-all duration-300 hover:scale-105 hover:text-white"
-              >
-                <span className="relative z-10">Get To Know Me</span>
-                <div className="from-primary-500 absolute inset-0 origin-left scale-x-0 transform bg-gradient-to-r to-pink-500 transition-transform duration-300 group-hover:scale-x-100"></div>
-              </Link>
-              <Link
                 href="/projects"
-                className="group relative transform overflow-hidden rounded-lg border-2 border-gray-500 px-8 py-3 text-base font-medium text-gray-700 transition-all duration-300 hover:scale-105 hover:text-white dark:text-gray-300 dark:hover:text-white"
+                className="bg-primary-600 hover:bg-primary-700 inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors"
               >
-                <span className="relative z-10">View Projects</span>
-                <div className="absolute inset-0 origin-left scale-x-0 transform bg-gradient-to-r from-purple-500 to-pink-500 transition-transform duration-300 group-hover:scale-x-100"></div>
+                View my work
+                <span aria-hidden>→</span>
               </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-800 transition-colors hover:border-gray-900 dark:border-gray-700 dark:text-gray-200 dark:hover:border-gray-100"
+              >
+                Get in touch
+              </Link>
+              <div className="ml-1 flex items-center gap-4 pl-1">
+                <SocialIcon kind="github" href={siteMetadata.github} size={5} />
+                <SocialIcon kind="linkedin" href={siteMetadata.linkedin} size={5} />
+                <SocialIcon kind="mail" href={`mailto:${siteMetadata.email}`} size={5} />
+              </div>
             </motion.div>
           </div>
-        </div>
-      </div>
 
-      {/* Features Section */}
-      <motion.div
-        className="border-t border-gray-200 py-16 dark:border-gray-700"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
+          {/* Avatar */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative mx-auto w-full max-w-xs sm:max-w-sm md:ml-auto"
+          >
+            <div className="bg-primary-500/10 absolute -inset-4 -z-10 rounded-3xl blur-2xl" />
+            <div className="aspect-square overflow-hidden rounded-2xl border border-gray-200 shadow-sm dark:border-gray-800">
+              <Image
+                src="/static/images/avatar2.jpg"
+                alt={siteMetadata.author}
+                width={560}
+                height={560}
+                priority
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Stats + companies strip */}
         <motion.div
-          className="mb-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 gap-8 border-y border-gray-200 py-8 sm:grid-cols-[auto_1fr] sm:items-center dark:border-gray-800"
         >
-          <h2 className="mb-4 text-4xl font-extrabold text-gray-900 dark:text-gray-100">
-            Everything you need for a perfect AI solution
-          </h2>
+          <div className="flex gap-10">
+            {stats.map((stat) => (
+              <div key={stat.label}>
+                <div className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                  {stat.value}
+                </div>
+                <div className="mt-1 text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 sm:justify-end">
+            <span className="text-xs font-semibold tracking-[0.2em] text-gray-500 uppercase dark:text-gray-400">
+              Experience
+            </span>
+            {companies.map((company) => (
+              <span key={company} className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                {company}
+              </span>
+            ))}
+          </div>
         </motion.div>
+      </section>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {/* Feature 1 */}
-          <motion.div
-            className="group hover:bg-gray-750 rounded-2xl bg-gray-800 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-900 dark:hover:bg-gray-800"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gray-700 transition-transform group-hover:scale-110 dark:bg-gray-800">
-                <svg
-                  className="text-primary-400 h-7 w-7"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-bold text-white">Data-Driven Solutions</h3>
-                <p className="leading-relaxed text-gray-300">
-                  I build intelligent systems backed by data science, ensuring every decision is
-                  supported by robust analysis and proven methodologies.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature 2 */}
-          <motion.div
-            className="group hover:bg-gray-750 rounded-2xl bg-gray-800 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-900 dark:hover:bg-gray-800"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gray-700 transition-transform group-hover:scale-110 dark:bg-gray-800">
-                <svg
-                  className="h-7 w-7 text-pink-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-bold text-white">Remote Collaboration</h3>
-                <p className="leading-relaxed text-gray-300">
-                  I can understand your business needs and deliver exceptional AI solutions
-                  remotely, maintaining clear communication throughout the process.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature 3 */}
-          <motion.div
-            className="group hover:bg-gray-750 rounded-2xl bg-gray-800 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-900 dark:hover:bg-gray-800"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gray-700 transition-transform group-hover:scale-110 dark:bg-gray-800">
-                <svg
-                  className="h-7 w-7 text-purple-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-bold text-white">Time Conscious</h3>
-                <p className="leading-relaxed text-gray-300">
-                  I deliver high-quality work on time, respecting deadlines and ensuring your
-                  project stays on schedule from start to finish.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature 4 */}
-          <motion.div
-            className="group hover:bg-gray-750 rounded-2xl bg-gray-800 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-900 dark:hover:bg-gray-800"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gray-700 transition-transform group-hover:scale-110 dark:bg-gray-800">
-                <svg
-                  className="text-primary-400 h-7 w-7"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-bold text-white">Open for Learning</h3>
-                <p className="leading-relaxed text-gray-300">
-                  I stay current with the latest AI technologies and techniques, always ready to
-                  learn new approaches to solve your unique challenges.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature 5 */}
-          <motion.div
-            className="group hover:bg-gray-750 rounded-2xl bg-gray-800 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-900 dark:hover:bg-gray-800"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gray-700 transition-transform group-hover:scale-110 dark:bg-gray-800">
-                <svg
-                  className="h-7 w-7 text-pink-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-bold text-white">Tailored Development</h3>
-                <p className="leading-relaxed text-gray-300">
-                  I build with your specific goals in mind, creating customized AI solutions that
-                  align perfectly with your business objectives.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature 6 */}
-          <motion.div
-            className="group hover:bg-gray-750 rounded-2xl bg-gray-800 p-8 transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-900 dark:hover:bg-gray-800"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-gray-700 transition-transform group-hover:scale-110 dark:bg-gray-800">
-                <svg
-                  className="h-7 w-7 text-purple-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h3 className="mb-3 text-xl font-bold text-white">Ongoing Synergy</h3>
-                <p className="leading-relaxed text-gray-300">
-                  I provide continuous support and collaboration, ensuring your AI systems evolve
-                  with your needs and remain effective long-term.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      {/* Services Section */}
+      {/* What I do */}
       <Services />
 
-      {/* Tech Stack Section */}
+      {/* Selected projects */}
+      <section className="py-20 sm:py-24">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading
+            eyebrow="Selected work"
+            title="Featured projects"
+            description="Production agentic AI systems — RAG assistants, autonomous agents, and structured-output tools."
+          />
+          <Link
+            href="/projects"
+            className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap transition-colors"
+          >
+            All projects
+            <span aria-hidden>→</span>
+          </Link>
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {featuredProjects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+            >
+              <Card
+                title={project.title}
+                description={project.description}
+                period={project.period}
+                imgSrc={project.imgSrc}
+                href={project.href}
+                tags={project.tags}
+                achievements={project.achievements}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Tech stack */}
       <TechStack />
 
-      {/* Testimonials Section */}
-      <Testimonials />
-
-      {/* Achievements Section */}
+      {/* Certifications */}
       <Achievements />
 
-      {/* FAQ Section */}
+      {/* FAQ */}
       <FAQ />
+
+      {/* Contact CTA */}
+      <section className="py-20 sm:py-24">
+        <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gray-950 px-8 py-16 text-center dark:border-gray-800">
+          <div className="bg-primary-600/20 pointer-events-none absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full blur-3xl" />
+          <div className="relative">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Let&apos;s build something intelligent.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-gray-300">
+              Have an agentic AI or LLM project in mind? I&apos;d love to hear about it.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/contact"
+                className="bg-primary-600 hover:bg-primary-500 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors"
+              >
+                Start a conversation
+                <span aria-hidden>→</span>
+              </Link>
+              <a
+                href="/static/Youssef-Bastawisy-Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-lg border border-gray-700 px-6 py-3 text-sm font-semibold text-gray-200 transition-colors hover:border-gray-400"
+              >
+                Download resume
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
