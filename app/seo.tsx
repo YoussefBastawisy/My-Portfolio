@@ -18,14 +18,15 @@ export function genPageMetadata({ title, description, image, ...rest }: PageSEOP
       description: description || siteMetadata.description,
       url: './',
       siteName: siteMetadata.title,
-      images: image ? [image] : [siteMetadata.socialBanner],
+      // Image intentionally omitted so the generated app/opengraph-image is used
+      ...(image ? { images: [image] } : {}),
       locale: 'en_US',
       type: 'website',
     },
     twitter: {
       title: `${title} | ${siteMetadata.title}`,
       card: 'summary_large_image',
-      images: image ? [image] : [siteMetadata.socialBanner],
+      ...(image ? { images: [image] } : {}),
     },
     ...rest,
   }
